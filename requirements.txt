@@ -1,0 +1,6 @@
+# Runtime dependencies of the tournament harness image (`harness/`, `submission/`,
+# `run_agent.py`). Only httpx is imported at runtime; openjiuwen is installed
+# pinned as the harness's base framework (its heavy optional dependency tree is
+# not needed and is excluded to respect the <4GB image / <1000s build limits).
+openjiuwen==0.1.19
+httpx==0.28.1

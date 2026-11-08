@@ -1,0 +1,8 @@
+# Development / offline-evolution dependencies (NOT installed into the Docker image).
+# Used by: eblo/ (EBLO evolution), tests/, tools/ (training set & calibration).
+pydantic==2.14.3
+PyYAML==6.0.3
+httpx==0.28.1
+rich==15.0.0
+numpy==2.5.4
+openjiuwen==0.1.19

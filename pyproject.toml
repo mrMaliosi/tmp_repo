@@ -1,0 +1,41 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "eblo"
+version = "0.1.0"
+description = "Evolutionary Blazing-fast LLM Orchestrator (EBLO) and openJiuwen Tournament Harness"
+readme = "README.md"
+requires-python = ">=3.11"
+license = {text = "MIT"}
+authors = [
+    {name = "Principal Systems Architect"}
+]
+dependencies = [
+    "pydantic>=1.10,<3.0",
+    "PyYAML>=6.0",
+    "httpx>=0.23.0",
+    "rich>=13.0.0",
+    "openjiuwen==0.1.19",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-asyncio>=0.21.0",
+]
+cli = [
+    "typer>=0.9.0",
+]
+
+[project.scripts]
+eblo = "eblo.cli:main"
+eblo-harness = "run_agent:main"
+
+[tool.setuptools]
+py-modules = ["run_agent"]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["eblo*", "harness*", "submission*"]

@@ -1,0 +1,33 @@
+{
+  "source": {
+    "run_summary": "real_run_out.json",
+    "run_log": "real_run_out.json.log",
+    "ground_truth": "train_ground_truth.json",
+    "real_c_eff": 5592.5,
+    "real_solved": 80,
+    "note": "scale = (real_C_eff - 0.1*sim_prompt - sim_reasoning) / sim_completion"
+  },
+  "completion_token_scale": 0.3113,
+  "difficulty_accuracy": {
+    "math": [
+      0.95,
+      0.85,
+      0.68
+    ],
+    "search": [
+      0.962,
+      0.8,
+      0.62
+    ],
+    "data_analysis": [
+      0.958,
+      0.8,
+      0.58
+    ],
+    "coding": [
+      0.944,
+      0.74,
+      0.5
+    ]
+  }
+}

@@ -1,0 +1,69 @@
+experiment:
+  name: "eblo-default-run"
+  evolution_mode: "island" # generational | steady_state | island
+  generations: 15
+  population_size: 24
+  islands: 3
+  migration_interval: 5
+
+llm:
+  provider: "openai_compatible"
+  base_url: "http://127.0.0.1:8081/v1"
+  api_key: "strata-local"
+  model: "Qwen3.8-Flash-Next-Coder"
+  max_concurrent: 4
+  timeout_sec: 120
+
+initializer:
+  type: "hybrid" # meta_prompt_divergent | combinatorial_matrix | hybrid
+  meta_prompt_ratio: 0.5
+  default_temperature: 0.85
+  personas:
+    - "Principal Algorithm Engineer focused on asymptotic time complexity and CPU cache locality."
+    - "Competitive Programming Grandmaster specializing in dynamic programming, bitmasking, and branch-and-bound pruning."
+    - "High-Performance Python Systems Architect utilizing vectorization, precomputation, and low-overhead data structures."
+    - "Mathematical Optimization Specialist applying graph theory, linear programming relaxations, and greedy heuristics."
+  constraints_pool:
+    - "Avoid recursion depth traps; prefer iterative state stacks or explicit queues."
+    - "Use strictly standard library modules (math, heapq, collections, itertools, bisect, array)."
+    - "Optimize inner loops by hoisting invariant calculations and binding local variables."
+    - "Guarantee worst-case termination within the time limit using early-exit pruning."
+    - "Minimize memory allocations inside tight loops; reuse preallocated buffers or tuples."
+    - "Use bit manipulation for state representation whenever the state space dimension allows."
+  strategies_pool:
+    - "Apply exact dynamic programming with memoization and state-space pruning to eliminate dominated states."
+    - "Implement a branch-and-bound search ordered by an admissible lower-bound heuristic with aggressive pruning."
+    - "Construct an initial greedy solution followed by fast local search (2-opt / swap refinement) and exact verification."
+    - "Use bidirectional search or meet-in-the-middle decomposition to reduce exponential complexity."
+
+validator:
+  runner: "local_subprocess"
+  smoke_timeout_ms: 500
+  benchmark_timeout_ms: 2500
+  reference_time_ms: 100.0
+  cache_backend: "sqlite" # sqlite | memory
+  cache_db_path: "runs/ast_cache.sqlite"
+  weights:
+    pass_rate: 0.75
+    speed: 0.25
+
+selection:
+  type: "tournament" # tournament | nsga2
+  tournament_size: 3
+  elitism_count: 2
+
+variation:
+  crossover_rate: 0.6
+  mutation_rate: 0.4
+  crossovers:
+    - type: "semantic_synthesis"
+      weight: 0.7
+    - type: "structural_block"
+      weight: 0.3
+  mutations:
+    - type: "reflexion_feedback"
+      weight: 0.5
+    - type: "orthogonal_shift"
+      weight: 0.3
+    - type: "hyperparameter_jitter"
+      weight: 0.2

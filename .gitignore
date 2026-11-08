@@ -1,0 +1,31 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+.pytest_cache/
+
+# Secrets — NEVER commit API keys
+.env
+*.key
+
+# Run artifacts (answers, summaries, logs) — regenerated per run
+real_run_out.json*
+demo_out.json*
+summary_out.json*
+.real_run_out.json.*
+answer.txt
+
+# Training / calibration data (large, regenerable via tools/gen_training_set.py)
+train_tasks_100/
+train_ground_truth.json
+
+# Organizer-provided sample tasks (not ours to publish)
+competition_tasks/
+
+# macOS
+.DS_Store
+
+# IDE
+.idea/
+.vscode/
